@@ -1,5 +1,38 @@
 # RickMorty
 
+
+## Manual para hacer el proyecto
+
+1. ng new rick-morty --style scss --routing
+
+
+### Creamos el módulo para paginas
+2. ng g m pages --routing
+
+### Creamos el Modulo para autenticación
+3. ng g m auth
+
+#### Explicación de crear módulos:
+necesitamos crear un módulo por cada tipo de acción que queremos realizar, por ejemplo:
+- ventas
+- compras
+- administración
+- autenticación
+- pagos
+
+Por tanto al ser autenticación una nueva acción o funcionalidad, debemos crear un nuevo módulo.
+
+
+### Creamos el componente de login, luego le adaptamos al archivo de rutas sus rutas
+4. ng g c auth/login
+
+
+5. ng g c pages/characters
+
+6. ng g c pages/favorites
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.2.
 
 ## Development server

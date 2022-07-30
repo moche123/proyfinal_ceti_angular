@@ -1,0 +1,10 @@
+<p>characters works!</p>
+<div class="container-characters">
+    <!-- DIRECTIVA NGFOR -->
+    <section class="item" *ngFor="let person of charactersObs$ | async">
+        {{person.name}}
+
+        <img [src]="person.image" alt="">
+        <!-- {{person.image}} -->
+    </section>
+</div>
