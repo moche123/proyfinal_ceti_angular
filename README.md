@@ -3,7 +3,7 @@
 
 ## Manual para hacer el proyecto
 
-1. ng new rick-morty --style scss --routing
+1. ng new rick-morty --style=scss --routing
 
 
 ### Creamos el módulo para paginas

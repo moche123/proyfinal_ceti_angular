@@ -19,10 +19,15 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.loginForm.value);
+    if(this.loginForm.invalid){
+      alert('FORMULARIO INVALIDO')
+    }else{
+
+      alert(this.loginForm.value);
+    }
   }
 
-  fieldIsValid(field:string){
+  fieldIsInvalid(field:string){
     return this.loginForm.controls[field].errors
   }
       
