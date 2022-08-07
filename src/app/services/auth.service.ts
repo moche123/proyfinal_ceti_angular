@@ -1,13 +1,25 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { environment } from 'src/environments/environment';
+import { of, Observable } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   
-  private STORAGE_TOKEN = 'KEY_CETI'
+  private STORAGE_TOKEN = 'token'
 
-  constructor() { }
+  private baseUrl:string= environment.baseUrl;
+
+  private _usuario!:any;
+
+  get usuario(){
+    return {...this._usuario};
+  }
+
+  constructor(private http:HttpClient) { }
+
 
   public isLoggedIn(): boolean{
     //return true
@@ -19,6 +31,58 @@ export class AuthService {
       return false
     }
 
+  }
+ 
+
+  registrarUsuario(name:string,email:string,password:string,rol:number,estado:boolean){
+
+    const url = `${this.baseUrl}auth/new`;
+    const body = {name,email,password,rol,estado};
+    
+    return this.http.post<any>(url,body)
+            .pipe(
+              tap(({ok,token}) =>{
+                // console.log(resp,'Servicio registro');
+
+                if(ok){
+                  localStorage.setItem(this.STORAGE_TOKEN,token!)
+                  
+                }else{
+                  localStorage.clear();
+                }
+              }),
+              map(result=>{
+                return result.ok
+              }),
+              catchError(err=>{
+                return of(err.error)
+              })
+            
+            ) 
+
+  }
+
+  login(email:string,password:string){
+    
+    const url   = `${this.baseUrl}auth/`;
+    const body  = {email,password};
+
+    return this.http.post<any>(url,body)
+      .pipe(
+        tap(({ok,token}) =>{
+          // console.log(resp);
+          if(ok){
+            localStorage.setItem(this.STORAGE_TOKEN,token!)
+          }else{
+            localStorage.clear();
+          }
+        } ),
+        map(resp => resp.ok),
+        catchError(err=>{
+
+          return  of(err.error)
+        })
+      )
   }
 
 

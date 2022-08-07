@@ -1,9 +1,19 @@
+
 <div class="flexbox-content">
-  <form class="login-form" autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="login()">
+  <form class="login-form" autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="registarUsuario()">
 
     <h1 class="login-form-title">
-      Login
+      Creación de cuenta
     </h1>
+
+    <div class="wrap-input m-b">
+      <span class="label-input">Nombre</span>
+      <input class="input" type="text" formControlName="name" placeholder="Ingrese su nombre">
+      <span class="text-danger" *ngIf="campoEsValidoReactivo('name')">
+
+        El nombre debe ser 6 caracteres o mayor
+      </span>
+    </div>
 
     <div class="wrap-input m-b">
       <span class="label-input">Email</span>
@@ -32,7 +42,7 @@
         <div class="login-form-bgbtn"></div>
         <button class="login-form-btn" type="submit" [disabled]="miFormulario.invalid" [ngClass]="{'blue-valid': !miFormulario.invalid,
         'blue-invalid': miFormulario.invalid}">
-          Inciar sesión
+          Registrar
         </button>
       </div>
     </div>
@@ -40,12 +50,9 @@
 
   </form>
   <div class="crearCuenta">
-    <span class="txt1 p-b-17">
-      ¿No tienes cuenta? 
-    </span>
-    | 
-    <a routerLink="/register" class="txt2">
-       Crear una aquí
+
+    <a routerLink="/login" class="">
+      Volver a inicio sesión
     </a>
   </div>
   <!-- Mensaje de validaciones del servidor-->

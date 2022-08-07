@@ -7,11 +7,13 @@ import { LoginComponent } from './login/login.component';
 
 //SEEMS TO BE IN SHARED MODULE
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,

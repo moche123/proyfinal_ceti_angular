@@ -7,6 +7,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { CharactersComponent } from './characters/characters.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { PagesComponent } from './pages.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PagesComponent } from './pages.component';
   ],
   imports: [
     CommonModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    SharedModule
   ]
 })
 export class PagesModule { }
