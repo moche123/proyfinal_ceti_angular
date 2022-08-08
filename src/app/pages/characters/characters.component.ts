@@ -30,6 +30,8 @@ export class CharactersComponent implements OnInit {
       if(ok.ok != false){
 
         this.router.navigateByUrl('/pages/favorites')
+      }else{
+        alert('Personaje ya está en favoritos')
       }
     })
   }
