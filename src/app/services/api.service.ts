@@ -37,7 +37,7 @@ export class ApiService {
      
         map(resp => resp.ok),
         catchError(err => {
-          alert('ERROR AL AGREGAR FAVORITO')
+          alert('Personaje ya está en favoritos')
           return of(err.error)
         })
       )
