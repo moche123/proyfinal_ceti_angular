@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { of, Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -53,5 +53,17 @@ export class ApiService {
           return todo.favoritos
         })
       )
+  }
+
+  deleteFavorite(IdCharacter:any,IdUser:any): Observable<any> {
+
+    const url = `${this.baseUrl}favorite/deleteFavorite`;
+    const options = { headers: new HttpHeaders({ 'Content-Type': 'application/json', }), body: { IdCharacter,IdUser }, };
+    // const headers = new HttpHeaders().set(IdCharacter.toString(),IdUser)
+    
+    console.log(options)
+    return this.http.delete<any>(url,options)
+      
+      
   }
 }

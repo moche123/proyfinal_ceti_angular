@@ -1,5 +1,5 @@
 .btn-close-session{
-    width: 100%;
+    width: auto;
     padding: 15px;
     border: none;
     border-radius: 10px;
@@ -8,4 +8,13 @@
     background-color: #0086bf;
     cursor: pointer;
 
+}
+
+.flex{
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(243, 243, 243);
+  margin-bottom: 25px;
 }

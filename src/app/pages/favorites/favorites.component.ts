@@ -9,6 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class FavoritesComponent implements OnInit {
   public favoritesObs$: any;
+  paso:any;
 
   constructor(private apiService:ApiService,private router:Router) { }
   ngOnInit(): void {
@@ -21,6 +22,12 @@ export class FavoritesComponent implements OnInit {
   }
 
   public removeFavorite(favorite:any){
+    console.log(favorite.IdCharacter);
+    this.apiService.deleteFavorite(favorite.IdCharacter, favorite.IdUser).subscribe(resultado=>{
+    
+      this.favoritesObs$ = this.apiService.getFavorites()
+      // window.alert(resultado.msg)
+    })
 
   }
 

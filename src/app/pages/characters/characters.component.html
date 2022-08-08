@@ -1,4 +1,5 @@
- <div class="container-characters">
+<button  class="padding btn-favorito" routerLink="/pages/favorites">Listar mis Favoritos</button>
+<div class="container-characters">
     <!-- DIRECTIVA NGFOR -->
     <section class="item" *ngFor="let person of charactersObs$ | async">
         {{person.name}}
