@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         console.log(ok);
         if(ok === true){
           // localStorage.setItem('token')
-          this.router.navigateByUrl('/dashboard')
+          this.router.navigateByUrl('/pages')
         }else{
           //TODO: mostrar mensaje de error
           //valida los errores (validaciones) desde la base de datos

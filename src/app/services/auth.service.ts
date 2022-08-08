@@ -8,7 +8,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class AuthService {
   
-  private STORAGE_TOKEN = 'token'
+  private STORAGE_TOKEN:string = 'token'
+  private USER_ID:string = 'userId';
 
   private baseUrl:string= environment.baseUrl;
 
@@ -41,11 +42,12 @@ export class AuthService {
     
     return this.http.post<any>(url,body)
             .pipe(
-              tap(({ok,token}) =>{
+              tap(({ok,token,uid}) =>{
                 // console.log(resp,'Servicio registro');
 
                 if(ok){
                   localStorage.setItem(this.STORAGE_TOKEN,token!)
+                  localStorage.setItem(this.USER_ID,uid!)
                   
                 }else{
                   localStorage.clear();
@@ -69,10 +71,11 @@ export class AuthService {
 
     return this.http.post<any>(url,body)
       .pipe(
-        tap(({ok,token}) =>{
+        tap(({ok,token,uid}) =>{
           // console.log(resp);
           if(ok){
             localStorage.setItem(this.STORAGE_TOKEN,token!)
+            localStorage.setItem(this.USER_ID,uid!)
           }else{
             localStorage.clear();
           }
@@ -84,6 +87,12 @@ export class AuthService {
         })
       )
   }
+
+
+
+    
+            
+  
 
 
 }

@@ -1,24 +1,57 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import {Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { of, Observable } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   //https://rickandmortyapi.com/api/character
-  constructor(private http:HttpClient) { } //! INYECCION DE DEPENDENCIAS: Uso metodos de algo que no he creado yo
+  constructor(private http: HttpClient) { } //! INYECCION DE DEPENDENCIAS: Uso metodos de algo que no he creado yo
+  private USER_ID:string = 'userId';
+  private baseUrl:string= environment.baseUrl;
+
 
   getPersonajes(): Observable<any[]> {
-    const url:string = 'https://rickandmortyapi.com/api/character';
+    const url: string = 'https://rickandmortyapi.com/api/character';
 
     return this.http.get(url)
-    .pipe(
-      map( (todo:any)=> {
-        return todo.results
-      })
-    )
+      .pipe(
+        map((todo: any) => {
+          return todo.results
+        })
+      )
   }
 
+
+  addFavorite(body: any): Observable<any> {
+    const url = `${this.baseUrl}favorite/newFavorite`;
+
+
+    console.log(body)
+
+    return this.http.post<any>(url, body)
+      .pipe(
+     
+        map(resp => resp.ok),
+        catchError(err => {
+          alert('ERROR AL AGREGAR FAVORITO')
+          return of(err.error)
+        })
+      )
+  }
+
+
+  getFavorites(): Observable<any[]> {
+    const url = `${this.baseUrl}favorite/${localStorage.getItem('userId')}`;
+
+    return this.http.get(url)
+      .pipe(
+        map((todo: any) => {
+          return todo.favoritos
+        })
+      )
+  }
 }

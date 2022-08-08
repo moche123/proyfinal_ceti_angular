@@ -1,10 +1,10 @@
-<p>characters works!</p>
-<div class="container-characters">
+ <div class="container-characters">
     <!-- DIRECTIVA NGFOR -->
     <section class="item" *ngFor="let person of charactersObs$ | async">
         {{person.name}}
 
         <img [src]="person.image" alt="">
         <!-- {{person.image}} -->
+        <button class="btn-add-favorite" (click)="addFavorite(person)">Add favorite</button>
     </section>
 </div>
