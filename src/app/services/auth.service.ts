@@ -10,6 +10,7 @@ export class AuthService {
   
   private STORAGE_TOKEN:string = 'token'
   private USER_ID:string = 'userId';
+  private NAME:string = 'name';
 
   private baseUrl:string= environment.baseUrl;
 
@@ -71,11 +72,12 @@ export class AuthService {
 
     return this.http.post<any>(url,body)
       .pipe(
-        tap(({ok,token,uid}) =>{
+        tap(({ok,token,uid,name}) =>{
           // console.log(resp);
           if(ok){
             localStorage.setItem(this.STORAGE_TOKEN,token!)
             localStorage.setItem(this.USER_ID,uid!)
+            localStorage.setItem(this.NAME,name!)
           }else{
             localStorage.clear();
           }
